@@ -15,14 +15,21 @@
   // Get ID
   $author->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-  // Get post
-  $author->read_single();
+  // Get author
+  $result = $author->read_single();
+  
+  if ($result) {
+    // Create array
+    $author_arr = array(
+      'id' => $author->id,
+      'author' => $author->author
+    );
 
-  // Create array
-  $author_arr = array(
-    'id' => $author->id,
-    'author' => $author->author
-  );
-
-  // Make JSON
-  print_r(json_encode($author_arr));
+    // Make JSON
+    print_r(json_encode($author_arr));
+  } else {
+    // No Authors
+    echo json_encode(
+      array('message' => 'author_id NOT FOUND')
+    );
+  }
