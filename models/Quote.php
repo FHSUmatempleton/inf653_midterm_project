@@ -41,9 +41,9 @@
           // Create query
           $query = 'SELECT a.author as author_name, c.category as category_name, q.id, q.category_id, q.quote, q.author_id
                                     FROM ' . $this->table . ' q
-                                    LEFT JOIN
+                                    INNER JOIN
                                       categories c ON q.category_id = c.id
-                                    LEFT JOIN
+                                    INNER JOIN
                                       authors a ON q.author_id = a.id
                                     WHERE
                                       q.id = :id';
