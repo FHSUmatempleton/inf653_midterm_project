@@ -60,7 +60,7 @@
   // Create Author
   public function create() {
     // Create Query
-    $query = 'INSERT INTO ' . $this->table . ' (category) VALUES (:category)';
+    $query = 'INSERT INTO ' . $this->table . ' (author) VALUES (:author)';
 
   // Prepare Statement
   $stmt = $this->conn->prepare($query);

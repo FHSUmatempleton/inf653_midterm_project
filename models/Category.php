@@ -60,10 +60,7 @@
   // Create Category
   public function create() {
     // Create Query
-    $query = 'INSERT INTO ' .
-      $this->table . '
-    SET
-      category = :category';
+    $query = 'INSERT INTO ' . $this->table . ' (category) VALUES (:category)';
 
   // Prepare Statement
   $stmt = $this->conn->prepare($query);
