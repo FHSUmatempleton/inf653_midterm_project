@@ -24,8 +24,8 @@
     $quote_arr = array(
       'id' => $quote->id,
       'quote' => $quote->quote,
-      'author_name' => $quote->author_name,
-      'category_name' => $quote->category_name
+      'author' => $quote->author_name,
+      'category' => $quote->category_name
     );
     
     // Make JSON
