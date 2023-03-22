@@ -16,7 +16,13 @@
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
-
+  if (!isset($data->id) || !isset($data->author)) {
+    echo json_encode(
+      array('message' => 'Missing Required Parameters')
+    );
+    die();
+  }
+  
   // Set ID to UPDATE
   $author->id = $data->id;
 
