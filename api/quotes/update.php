@@ -25,6 +25,13 @@
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
 
+  if (!$quote->read_single()) {
+    echo json_encode(
+      array('message' => 'No Quotes Found')
+    );
+    die();
+  }
+
   // Update quote
   if($quote->update()) {
     echo json_encode(
