@@ -59,10 +59,14 @@
 
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-          // Set properties
-          $this->quote = $row['quote'];
-          $this->category_name = $row['category_name'];
-          $this->author_name = $row['author_name'];
+          if ($row) {
+            // Set properties
+            $this->quote = $row['quote'];
+            $this->category_name = $row['category_name'];
+            $this->author_name = $row['author_name'];
+            return true;
+          }
+          return false;
     }
 
     // Create Post
