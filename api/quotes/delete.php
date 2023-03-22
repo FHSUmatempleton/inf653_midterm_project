@@ -20,7 +20,13 @@
 
   // Set ID to update
   $quote->id = $data->id;
-
+  if (!$quote->read_single()) {
+    echo json_encode(
+      array('message' => 'No Quotes Found')
+    );
+    die();
+  }
+  
   // Delete quote
   if($quote->delete()) {
     echo json_encode(
