@@ -30,8 +30,8 @@
       $quote_item = array(
         'id' => $id,
         'quote' => html_entity_decode($quote),
-        'category_name' => $category_name,
-        'author_name' => $author_name
+        'category' => $category_name,
+        'author' => $author_name
       );
 
       // Push to "data"
