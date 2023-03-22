@@ -16,13 +16,20 @@
   $category->id = isset($_GET['id']) ? $_GET['id'] : die();
 
   // Get category
-  $category->read_single();
+  $result = $category->read_single();
 
-  // Create array
-  $category_arr = array(
-    'id' => $category->id,
-    'category' => $category->category
-  );
-
-  // Make JSON
-  print_r(json_encode($category_arr));
+  if ($result) {
+    // Create array
+    $category_arr = array(
+      'id' => $category->id,
+      'category' => $category->category
+    );
+  
+    // Make JSON
+    print_r(json_encode($category_arr));
+  } else {
+    // No Categories
+    echo json_encode(
+      array('message' => 'category_id Not Found')
+    );
+  }

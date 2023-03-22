@@ -32,30 +32,34 @@
     }
 
     // Get Single Category
-  public function read_single(){
-    // Create query
-    $query = 'SELECT
-          id,
-          category
-        FROM
-          ' . $this->table . '
-      WHERE id = :id';
-
-      //Prepare statement
-      $stmt = $this->conn->prepare($query);
-
-      // Bind ID
-      $stmt->bindParam(':id', $this->id);
-
-      // Execute query
-      $stmt->execute();
-
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      // set properties
-      $this->id = $row['id'];
-      $this->category = $row['category'];
-  }
+    public function read_single(){
+      // Create query
+      $query = 'SELECT
+            id,
+            category
+          FROM
+            ' . $this->table . '
+        WHERE id = :id';
+  
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
+  
+        // Bind ID
+        $stmt->bindParam(':id', $this->id);
+  
+        // Execute query
+        $stmt->execute();
+  
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  
+        if ($row) {
+          // set properties
+          $this->id = $row['id'];
+          $this->category = $row['category'];
+          return true;
+        }
+        return false;
+    }
 
   // Create Category
   public function create() {
