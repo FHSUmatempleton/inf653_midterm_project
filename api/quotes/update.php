@@ -25,18 +25,18 @@
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
 
-  if (!$quote->read_single()) {
-    echo json_encode(
-      array('message' => 'No Quotes Found')
-    );
-    die();
-  }
-
   // Update quote
   if($quote->update()) {
-    echo json_encode(
-      array('message' => 'Quote Updated')
+    // Create array
+    $quote_arr = array(
+      'id' => $quote->id,
+      'quote' => $quote->quote,
+      'author_id' => $quote->author_id,
+      'category_id' => $quote->category_id
     );
+    
+    // Make JSON
+    print_r(json_encode($quote_arr));
   } else {
     echo json_encode(
       array('message' => 'Quote Not Updated')
