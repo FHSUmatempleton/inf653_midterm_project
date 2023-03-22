@@ -30,7 +30,7 @@
   // Delete quote
   if($quote->delete()) {
     echo json_encode(
-      array('message' => 'Quote Deleted')
+      array('id' => $quote->id)
     );
   } else {
     echo json_encode(
