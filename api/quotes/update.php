@@ -27,6 +27,7 @@
     die();
   }
 
+  // Determine if author exists
   $author = new Author($db);
   $authorExists = isValid($data->author_id, $author);
   if (!$authorExists) {
@@ -36,6 +37,7 @@
     die();
   }
 
+  // Determine if category exists
   $category = new Category($db);
   $categoryExists = isValid($data->category_id, $category);
   if (!$categoryExists) {
@@ -51,6 +53,14 @@
   $quote->quote = $data->quote;
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
+
+  // Determine if quote exists
+  if (!$quote->read_single()) {
+    echo json_encode(
+      array('message' => 'No Quotes Found')
+    );
+    die();
+  }
 
   // Update quote
   if($quote->update()) {
