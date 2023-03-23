@@ -16,6 +16,8 @@
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
+
+  // check if params were provided with request
   if (!isset($data->author)) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
