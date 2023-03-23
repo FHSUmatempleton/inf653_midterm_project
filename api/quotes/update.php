@@ -17,7 +17,13 @@
 
   // Get raw quoteed data
   $data = json_decode(file_get_contents("php://input"));
-
+  if (!isset($data->id) || !isset($data->quote) || !isset($data->author_id) || !isset($data->category_id)) {
+    echo json_encode(
+      array('message' => 'Missing Required Parameters')
+    );
+    die();
+  }
+  
   // Set ID to update
   $quote->id = $data->id;
 
