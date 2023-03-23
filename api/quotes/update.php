@@ -49,9 +49,8 @@
     die();
   }
 
-  // Set ID to update
+  // update params
   $quote->id = $data->id;
-
   $quote->quote = $data->quote;
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
