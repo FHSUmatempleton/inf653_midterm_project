@@ -16,6 +16,8 @@
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
+
+  // check if params were provided with request
   if (!isset($data->id) || !isset($data->category)) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
@@ -23,9 +25,8 @@
     die();
   }
   
-  // Set ID to UPDATE
+  // update params
   $category->id = $data->id;
-
   $category->category = $data->category;
 
   // Update category
