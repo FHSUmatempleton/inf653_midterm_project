@@ -7,6 +7,9 @@
 
   include_once '../../config/Database.php';
   include_once '../../models/Quote.php';
+  include_once '../../models/Author.php';
+  include_once '../../models/Category.php';
+  include_once '../../functions/isValid.php';
 
   // Instantiate DB & connect
   $database = new Database();
@@ -23,7 +26,25 @@
     );
     die();
   }
-  
+
+  $author = new Author($db);
+  $authorExists = isValid($data->author_id, $author);
+  if (!$authorExists) {
+    echo json_encode(
+      array('message' => 'author_id Not Found')
+    );
+    die();
+  }
+
+  $category = new Category($db);
+  $categoryExists = isValid($data->category_id, $category);
+  if (!$categoryExists) {
+    echo json_encode(
+      array('message' => 'category_id Not Found')
+    );
+    die();
+  }
+
   // Set ID to update
   $quote->id = $data->id;
 
