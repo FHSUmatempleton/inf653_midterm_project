@@ -20,6 +20,8 @@
 
   // Set ID to update
   $quote->id = $data->id;
+
+  // check if quote exists
   if (!$quote->read_single()) {
     echo json_encode(
       array('message' => 'No Quotes Found')
