@@ -20,6 +20,8 @@
 
   // Get raw quoteed data
   $data = json_decode(file_get_contents("php://input"));
+
+  // make sure all parameters are provided with request
   if (!isset($data->id) || !isset($data->quote) || !isset($data->author_id) || !isset($data->category_id)) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
