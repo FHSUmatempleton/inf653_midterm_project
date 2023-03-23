@@ -20,6 +20,8 @@
 
   // Get raw quoteed data
   $data = json_decode(file_get_contents("php://input"));
+
+  // check if parameters were provided with request
   if (!isset($data->quote) || !isset($data->author_id) || !isset($data->category_id)) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
@@ -27,6 +29,7 @@
     die();
   }
 
+  // check if author exists
   $author = new Author($db);
   $authorExists = isValid($data->author_id, $author);
   if (!$authorExists) {
@@ -36,6 +39,7 @@
     die();
   }
 
+  // check if category exists
   $category = new Category($db);
   $categoryExists = isValid($data->category_id, $category);
   if (!$categoryExists) {
